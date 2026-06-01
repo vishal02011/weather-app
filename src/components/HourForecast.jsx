@@ -3,7 +3,7 @@ import cloudy from "../assets/cloudy.svg";
 export const HourForecast = () => {
   return (
     <div className='hour'>
-      <h1 >Hourly Forecast</h1>
+      <h3 >Hourly Forecast</h3>
       <div className='time'>
       <div>11PM <span><img src={cloudy} alt="Cloudy" /></span> 10°C</div>
       <div>12AM <span><img src={cloudy} alt="Cloudy" /></span> 9°C</div>

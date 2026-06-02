@@ -55,12 +55,24 @@
 .search input {
   border-radius: 10px;
   background-color: #0b1d3b;
-  border: 1px solid rgba(14, 155, 237, 0.523);
+  border: none;
   font-size: 16px;
-  width: 100%;
+  width: 100em;
   height: 100%;
+  outline: none;
+  color:white;
 }
-
+.search img{
+  right:50px;
+  width: 2em;
+  z-index: 1;
+  
+}
+.search button{
+  background: none;
+  border: none;
+  cursor: pointer;
+}
 /* ── CITYCARD ── */
 .citycard {
   background-color: #0b1d3b;
@@ -73,12 +85,24 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+   position: relative;
+}
+.citycard::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 15px;
 }
 
 .citycard-top {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+}
+.citycard-top, .citycard-stats {
+  position: relative; /* stays above the overlay */
+  z-index: 1;
 }
 
 .weather-icon {

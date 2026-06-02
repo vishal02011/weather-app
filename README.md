@@ -6,11 +6,11 @@ A responsive weather web app built with React that shows real-time weather data 
 Coming soon
 
 ## 📸 Preview
-<!-- Add a screenshot of your app here -->
+![Preview](assets/preview.png)
 
 ## 🛠️ Tech Stack
 - React (Vite)
-- Open-Meteo API (free, no API key needed)
+- OpenWeatherMap API
 - Recharts (temperature graph)
 - CSS Flexbox & Grid
 

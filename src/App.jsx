@@ -19,31 +19,37 @@ const App = () => {
   const [loading, setLoading]=useState(true)
   const [error, setError]=useState(null)
  
-  useEffect(() => {
-    console.log("use effect called")
-    setError(null)
-    fetch(url)
+useEffect(() => {
+  setLoading(true);
+  setError(null);
+
+  fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      setWeatherData(data)
-      console.log(data)
-      setLoading(false)
+      if (data.cod === "404") {
+        throw new Error("City not found");
+      }
+
+      setWeatherData(data);
+      setLoading(false);
     })
     .catch((err) => {
-      setError("No result Found.Try something else.")
-      console.log("not found")
-    })
-  }, [city])
+      setWeatherData(null);
+      setError(err.message);
+      setLoading(false);
+    });
+}, [city]);
 
   return (
     <div className='rot'>
       <Left/>
       <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} setCity={setCity}/>
-      {loading ? (<p>Loading...</p>) : error ? ( <p>{error}</p>) : ( <Citycard data={weatherData}/>)}
-      <HourForecast/>
-      <DayForecast/>
-      <Tempgraph/>
-      <Rightbottom/>
+      {loading ? (<p>Loading...</p> ) : error ? ( <h1 style={{color:"red"}}>{error}</h1> ) : (<Citycard data={weatherData} />)
+}
+      {!error&&<HourForecast/>}
+      {!error&&<DayForecast/>}
+      {!error&&<Tempgraph/>}
+      {!error&&<Rightbottom/>}
     </div>
   )
 }

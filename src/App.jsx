@@ -18,33 +18,69 @@ const App = () => {
   const url=`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${ API_KEY }&units=metric`
   const [loading, setLoading]=useState(true)
   const [error, setError]=useState(null)
- 
-useEffect(() => {
-  setLoading(true);
-  setError(null);
 
-  fetch(url)
-    .then((response) => response.json())
-    .then((data) => {
-      if (data.cod === "404") {
+useEffect(() => {
+  async function fetchWeather() {
+    try {
+      setLoading(true);
+      setError(null);
+
+      const geoResponse = await fetch(
+        `https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=10`
+      );
+
+      const geoData = await geoResponse.json();
+
+      if (!geoData.results || geoData.results.length === 0) {
         throw new Error("City not found");
       }
 
-      setWeatherData(data);
-      setLoading(false);
-    })
-    .catch((err) => {
+      geoData.results.sort(
+        (a, b) => (b.population || 0) - (a.population || 0)
+      );
+
+      const location = geoData.results[0];
+
+      const weatherResponse = await fetch(
+        `https://api.open-meteo.com/v1/forecast?latitude=${location.latitude}&longitude=${location.longitude}&current=temperature_2m,apparent_temperature,relative_humidity_2m,wind_speed_10m,surface_pressure,cloud_cover,visibility,weather_code,uv_index&hourly=temperature_2m,weather_code&daily=temperature_2m_max,temperature_2m_min,weather_code&forecast_days=7&timezone=auto`
+      );
+
+      const weather = await weatherResponse.json();
+
+      setWeatherData({
+        city: location.name,
+        country: location.country,
+        latitude: location.latitude,
+        longitude: location.longitude,
+        current: weather.current,
+        hourly: weather.hourly,
+        daily: weather.daily,
+      });
+      console.log({
+        city: location.name,
+        country: location.country,
+        latitude: location.latitude,
+        longitude: location.longitude,
+        current: weather.current,
+        hourly: weather.hourly,
+        daily: weather.daily,
+      })
+    } catch (err) {
       setWeatherData(null);
       setError(err.message);
+    } finally {
       setLoading(false);
-    });
+    }
+  }
+
+  fetchWeather();
 }, [city]);
 
   return (
     <div className='rot'>
       <Left/>
       <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} setCity={setCity}/>
-      {loading ? (<p>Loading...</p> ) : error ? ( <h1 style={{color:"red"}}>{error}</h1> ) : (<Citycard data={weatherData} />)
+      {loading ? (<p>Loading...</p> ) : error ? ( <h1 style={{color:"red"}}>{error}</h1> ) : (<Citycard data={weatherData.city} />)
 }
       {!error&&<HourForecast/>}
       {!error&&<DayForecast/>}

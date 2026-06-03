@@ -47,15 +47,15 @@ useEffect(() => {
 
       const weather = await weatherResponse.json();
 
-      setWeatherData({
-        city: location.name,
+      setWeatherData(
+        {city: location.name,
         country: location.country,
         latitude: location.latitude,
         longitude: location.longitude,
         current: weather.current,
         hourly: weather.hourly,
-        daily: weather.daily,
-      });
+        daily: weather.daily,}
+      );
       console.log({
         city: location.name,
         country: location.country,
@@ -80,7 +80,7 @@ useEffect(() => {
     <div className='rot'>
       <Left/>
       <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} setCity={setCity}/>
-      {loading ? (<p>Loading...</p> ) : error ? ( <h1 style={{color:"red"}}>{error}</h1> ) : (<Citycard data={weatherData.city} />)
+      {loading ? (<p>Loading...</p> ) : error ? ( <h1 style={{color:"red"}}>{error}</h1> ) : (<Citycard data={weatherData} />)
 }
       {!error&&<HourForecast/>}
       {!error&&<DayForecast/>}

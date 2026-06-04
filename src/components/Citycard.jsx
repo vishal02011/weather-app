@@ -1,6 +1,6 @@
 import React from "react";
 import cloudy from "../assets/cloudy.svg";
-
+import getWeatherIcon from "./images";
 export const Citycard = (props) => {
   const months = [
   "January",
@@ -16,6 +16,17 @@ export const Citycard = (props) => {
   "November",
   "December"
 ];
+function g(code){
+  if (code === 0) return 'Clear Sky';
+    if (code === 1) return 'Mainly Clear';
+    if (code === 2) return 'Partly Cloudy';
+    if ([3, 45, 48].includes(code)) return 'Cloudy';
+    if ([51, 53, 55].includes(code)) return 'Drizzle';
+    if ([ 80, 81, 82].includes(code)) return 'Showers';
+    if ([61, 63, 65].includes(code)) return 'Rainy';
+    if ([71, 73, 75].includes(code)) return 'Snowy';
+    if ([95, 96, 99].includes(code)) return 'Thunder Storm'
+}
   console.log(props);
   return (
     <div className="citycard">
@@ -24,9 +35,9 @@ export const Citycard = (props) => {
           <h1>{ props.data.city}</h1>
           <p>Wednesday, {props.data.current.time.slice(8,10)} {months[Number(props.data.current.time.slice(5,7))]} {props.data.current.time.slice(0,4)}</p>
           <h1>{props.data.current.temperature_2m}°C</h1>
-          <p>Partly cloudy</p>
+          <p>{(g(props.data.current.weather_code))}</p>
         </div>
-        <img src={cloudy} className="weather-icon" />
+        <img src={getWeatherIcon(props.data.current.weather_code)} className="weather-icon" />
       </div>
       <div className="citycard-stats">
         <div>

@@ -64,7 +64,8 @@ useEffect(() => {
         current: weather.current,
         hourly: weather.hourly,
         daily: weather.daily,
-      })
+      });
+      
     } catch (err) {
       setWeatherData(null);
       setError(err.message);
@@ -82,8 +83,8 @@ useEffect(() => {
       <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} setCity={setCity}/>
       {loading ? (<p>Loading...</p> ) : error ? ( <h1 style={{color:"red"}}>{error}</h1> ) : (<Citycard data={weatherData} />)
 }
-      {!error&&<HourForecast/>}
-      {!error&&<DayForecast/>}
+      {!error&&<HourForecast temp={weatherData}/>}
+      {!error&&<DayForecast data={weatherData} />}
       {!error&&<Tempgraph/>}
       {!error&&<Rightbottom/>}
     </div>

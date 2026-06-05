@@ -1,6 +1,6 @@
 import React from 'react'
 import cloudy from "../assets/cloudy.svg";
-export const HourForecast = () => {
+export const HourForecast = ({data}) => {
   return (
     <div className='hour'>
       <h3 >Hourly Forecast</h3>

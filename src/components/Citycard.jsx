@@ -27,7 +27,7 @@ function g(code){
     if ([71, 73, 75].includes(code)) return 'Snowy';
     if ([95, 96, 99].includes(code)) return 'Thunder Storm'
 }
-  console.log(props);
+ 
   return (
     <div className="citycard">
       <div className="citycard-top">

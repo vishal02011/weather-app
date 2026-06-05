@@ -1,6 +1,7 @@
 import React from 'react'
 import cloudy from "../assets/cloudy.svg";
-export const DayForecast = () => {
+export const DayForecast = ({data}) => {
+  const tempmin=data?.daily?.temperature_2m_min
   return (
     <div className='day'>
       <h3>5-Day Forecast</h3>

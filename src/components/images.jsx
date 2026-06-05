@@ -8,6 +8,7 @@ import snow from "../assets/icons/snowy.svg";
 import thunderstorm from "../assets/icons/thunder.svg";
 
 function getWeatherIcon(code) {
+    
   if (code === 0) return clear;
   if (code === 1) return mainlyClear;
   if (code === 2) return partlyCloudy;

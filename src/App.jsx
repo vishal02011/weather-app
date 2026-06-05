@@ -71,6 +71,7 @@ useEffect(() => {
       setError(err.message);
     } finally {
       setLoading(false);
+     
     }
   }
 
@@ -83,10 +84,10 @@ useEffect(() => {
       <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} setCity={setCity}/>
       {loading ? (<p>Loading...</p> ) : error ? ( <h1 style={{color:"red"}}>{error}</h1> ) : (<Citycard data={weatherData} />)
 }
-      {!error&&<HourForecast temp={weatherData}/>}
-      {!error&&<DayForecast data={weatherData} />}
-      {!error&&<Tempgraph/>}
-      {!error&&<Rightbottom/>}
+      {weatherData&&<HourForecast data={weatherData}/>}
+      {weatherData&&<DayForecast data={weatherData} />}
+      {weatherData&&<Tempgraph/>}
+      {weatherData&&<Rightbottom/>}
     </div>
   )
 }

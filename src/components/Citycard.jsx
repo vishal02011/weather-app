@@ -33,7 +33,7 @@ function g(code){
       <div className="citycard-top">
         <div className="citycard-info">
           <h1>{ props.data.city}</h1>
-          <p>Wednesday, {props.data.current.time.slice(8,10)} {months[Number(props.data.current.time.slice(5,7))]} {props.data.current.time.slice(0,4)}</p>
+          <p>{new Date(props.data.current.time.slice(0, 10)).toLocaleDateString("en-US", { weekday: "long" })}, {props.data.current.time.slice(8,10)} {months[Number(props.data.current.time.slice(5,7))]} {props.data.current.time.slice(0,4)}</p>
           <h1>{props.data.current.temperature_2m}°C</h1>
           <p>{(g(props.data.current.weather_code))}</p>
         </div>

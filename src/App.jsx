@@ -84,10 +84,10 @@ useEffect(() => {
       <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} setCity={setCity}/>
       {loading ? (<p>Loading...</p> ) : error ? ( <h1 style={{color:"red"}}>{error}</h1> ) : (<Citycard data={weatherData} />)
 }
-      {weatherData&&<HourForecast data={weatherData}/>}
-      {weatherData&&<DayForecast data={weatherData} />}
-      {weatherData&&<Tempgraph/>}
-      {weatherData&&<Rightbottom/>}
+      {weatherData &&<HourForecast data={weatherData}/>}
+      {weatherData &&<DayForecast data={weatherData} />}
+      {weatherData &&<Tempgraph/>}
+      {weatherData &&<Rightbottom/>}
     </div>
   )
 }

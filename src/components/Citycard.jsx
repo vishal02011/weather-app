@@ -37,7 +37,7 @@ function g(code){
           <h1>{props.data.current.temperature_2m}°C</h1>
           <p>{(g(props.data.current.weather_code))}</p>
         </div>
-        <img src={getWeatherIcon(props.data.current.weather_code)} className="weather-icon" />
+        <img src={getWeatherIcon(props.data.current.weather_code,props.data.current.time)} className="weather-icon" />
       </div>
       <div className="citycard-stats">
         <div>

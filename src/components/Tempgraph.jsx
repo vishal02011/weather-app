@@ -7,18 +7,18 @@ import {
   AreaChart,
 } from "recharts";
 
-const data = [
-  { time: "6 AM", temp: 28 },
-  { time: "9 AM", temp: 30 },
-  { time: "12 PM", temp: 34 },
-  { time: "3 PM", temp: 36 },
-  { time: "6 PM", temp: 35 },
-  { time: "9 PM", temp: 31 },
-  { time: "12 AM", temp: 29 },
-  { time: "3 AM", temp: 27 },
-];
 
-export const Tempgraph = () => {
+export const Tempgraph = ({dat}) => {
+   const data = dat.hourly.temperature_2m
+  .filter((_, i) => i % 3 === 0)
+  .slice(0, 8)
+  .map((temp, i) => ({
+    time: new Date(dat.hourly.time[i * 3]).toLocaleTimeString([], {
+      hour: "numeric",
+      hour12: true,
+    }),
+    temp,
+  }));
   return (
     <div className="graph">
       <h3>Temperature Trend</h3>

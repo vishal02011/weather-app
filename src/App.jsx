@@ -87,7 +87,7 @@ useEffect(() => {
       {weatherData &&<HourForecast data={weatherData}/>}
       {weatherData &&<DayForecast data={weatherData} />}
       {weatherData &&<Tempgraph dat={weatherData}/>}
-      {weatherData &&<Rightbottom/>}
+      {weatherData &&<Rightbottom data={weatherData}/>}
     </div>
   )
 }

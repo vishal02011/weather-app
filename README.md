@@ -3,7 +3,7 @@
 A responsive weather web app built with React that shows real-time weather data powered by the Open-Meteo API.
 
 ## 🔗 Live Demo
-Coming soon
+[link](https://weather-app-chi-seven-77.vercel.app/)
 
 ## 📸 Preview
 ![Preview](assets/preview.png)

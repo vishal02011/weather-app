@@ -22,6 +22,7 @@ Coming soon
 - 📅 5-Day forecast
 - 📈 Temperature trend graph
 - 📱 Fully responsive design
+- Animated weather icons
 
 ## 🚀 Getting Started
 
@@ -35,7 +36,6 @@ npm run dev
 ## 🔮 Coming Soon
 - °C / °F toggle
 - GPS based auto location
-- Animated weather icons
 
 ## 👨‍💻 Author
 **Vishal** — B.Tech CS/AI Student
